@@ -1,5 +1,18 @@
 from django.db import models
 
+class Type(models.Model):
+
+    class Meta:
+        verbose_name = "Type"
+        verbose_name_plural = "Types"
+
+    id = models.BigAutoField(primary_key=True)
+    
+    type = models.CharField(blank=True, max_length=200)
+    
+    def __str__(self):
+        return self.type
+
 class CaliberGauge(models.Model):
 
     class Meta:
@@ -19,22 +32,12 @@ class Firearm(models.Model):
         verbose_name = "Firearm"
         verbose_name_plural = "Firearms"
 
-    FIREARM_TYPES = {
-        "pistol": "Pistol",
-        "revolver": "Revolver",
-        "rifle": "Rifle",
-        "shotgun": "Shotgun",
-        "frame": "Frame",
-        "receiver": "Receiver",
-        "other": "Other"
-    }
-
     id = models.BigAutoField(primary_key=True)
     
     manufacturer_importer = models.CharField(blank=True, max_length=200)
     model = models.CharField(blank=True, max_length=200)
     serial_number = models.CharField(blank=True, max_length=200)
-    type = models.CharField(blank=True, choices=FIREARM_TYPES, max_length=200)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE)
     caliber_gauge = models.ForeignKey(CaliberGauge, on_delete=models.CASCADE)
     date_acquired = models.DateField(blank=True)
     cost = models.CharField(blank=True, max_length=200)
