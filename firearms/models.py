@@ -34,15 +34,15 @@ class Firearm(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     
-    manufacturer_importer = models.CharField(blank=True, max_length=200)
+    manufacturer_importer = models.CharField("Manufacturer/Importer", blank=True, max_length=200)
     model = models.CharField(blank=True, max_length=200)
-    serial_number = models.CharField(blank=True, max_length=200)
+    serial_number = models.CharField("Serial Number", blank=True, max_length=200)
     type = models.ForeignKey(Type, on_delete=models.CASCADE)
-    caliber_gauge = models.ForeignKey(CaliberGauge, on_delete=models.CASCADE)
-    date_acquired = models.DateField(blank=True)
+    caliber_gauge = models.ForeignKey(CaliberGauge, verbose_name="Caliber/Gauge", on_delete=models.CASCADE)
+    date_acquired = models.DateField("Date Acquired", blank=True)
     cost = models.CharField(blank=True, max_length=200)
-    purchase_location = models.CharField(blank=True, max_length=200)
-    sold_transferred_to = models.CharField(blank=True, max_length=200)
+    purchase_location = models.CharField("Purchase Location", blank=True, max_length=200)
+    sold_transferred_to = models.CharField("Sold/Transferred to", blank=True, max_length=200)
 
     def __str__(self):
         return "{} {}".format(
