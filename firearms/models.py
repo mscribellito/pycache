@@ -5,6 +5,7 @@ class Type(models.Model):
     class Meta:
         verbose_name = "Type"
         verbose_name_plural = "Types"
+        ordering = ["type"]
 
     id = models.BigAutoField(primary_key=True)
     
@@ -18,6 +19,7 @@ class CaliberGauge(models.Model):
     class Meta:
         verbose_name = "Caliber/Gauge"
         verbose_name_plural = "Calibers/Gauges"
+        ordering = ["caliber_gauge"]
 
     id = models.BigAutoField(primary_key=True)
     
